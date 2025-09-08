@@ -20,7 +20,6 @@ class MatchingWidget extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-   
         Expanded(
           child: Column(
             children: q.leftColumn!.map((String option) {
@@ -41,8 +40,8 @@ class MatchingWidget extends StatelessWidget {
             }).toList(),
           ),
         ),
-        const SizedBox(width: 16),
-        
+        SizedBox(width: 16),
+
         Expanded(
           child: Column(
             children: q.rightColumn!.map((String option) {
@@ -81,7 +80,9 @@ class MatchingWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: isDisabled
               ? Colors.grey.shade300
-              : (isSelected ? Colors.blueAccent : Colors.blue.shade100),
+              : (isSelected
+                    ? Color.fromARGB(174, 89, 221, 65)
+                    : Colors.blue.shade100),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(text),
