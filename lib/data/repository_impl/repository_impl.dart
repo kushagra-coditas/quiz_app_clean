@@ -9,8 +9,8 @@ class QuestionRepositoryImpl implements QuestionRepository {
   QuestionRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<QuestionEntity>> questionrepository() async {
+  Future<List<QuestionEntity>> questionRepository() async {
     final List<QuestionModel> models = await remoteDataSource.fetchQuestions();
-    return models; 
-    }
+    return models;
+  }
 }

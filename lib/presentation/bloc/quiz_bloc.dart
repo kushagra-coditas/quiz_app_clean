@@ -103,12 +103,12 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
                 .map((dynamic e) => e.toString())
                 .contains(selected.toString());
       case QuestionType.trueFalse:
-        final String selStr = selected is bool
+        final String selectString = selected is bool
             ? (selected ? 'True' : 'False')
             : selected.toString();
         return q.correctAnswers!
             .map((dynamic e) => e.toString())
-            .contains(selStr);
+            .contains(selectString);
       case QuestionType.multipleSelect:
         if (selected == null) return false;
 
@@ -145,23 +145,22 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         final double tol = q.tolerance ?? 0.0;
         return (userNum - correctNum) <= tol;
 
-     case QuestionType.ordering:
-  if (selected == null) return false;
+      case QuestionType.ordering:
+        if (selected == null) return false;
 
-  
-  final List<String> chosenOrder = selected is List
-      ? selected.map((dynamic e) => e.toString()).toList()
-      : <String>[selected.toString()];
+        final List<String> chosenOrder = selected is List
+            ? selected.map((dynamic e) => e.toString()).toList()
+            : <String>[selected.toString()];
 
- 
-  final List<String> correctOrder =
-      q.correctAnswers?.map((dynamic e) => e.toString()).toList() ?? <String>[];
+        final List<String> correctOrder =
+            q.correctAnswers?.map((dynamic e) => e.toString()).toList() ??
+            <String>[];
 
- 
-  return chosenOrder.length == correctOrder.length &&
-      List<bool>.generate(correctOrder.length,
-              (int i) => correctOrder[i] == chosenOrder[i])
-          .every((bool match) => match);
+        return chosenOrder.length == correctOrder.length &&
+            List<bool>.generate(
+              correctOrder.length,
+              (int i) => correctOrder[i] == chosenOrder[i],
+            ).every((bool match) => match);
 
       case QuestionType.matching:
         if (selected == null) return false;

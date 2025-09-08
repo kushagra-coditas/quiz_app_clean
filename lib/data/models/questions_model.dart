@@ -17,14 +17,12 @@ class QuestionModel extends QuestionEntity {
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     final QuestionType type = mapType(json['type']?.toString());
 
-    
     final List<String> options =
         (json['options'] as List<dynamic>?)
             ?.map((dynamic e) => e.toString())
             .toList() ??
         <String>[];
 
-   
     final dynamic allCorrect = json['correctAnswers'];
     final List<dynamic> normalizedCorrect = <dynamic>[];
 
@@ -70,18 +68,19 @@ class QuestionModel extends QuestionEntity {
           normalizedCorrect.add(allCorrect);
         }
       } else if (type == QuestionType.ordering) {
-        
         if (json['correctOrder'] != null && json['correctOrder'] is List) {
           normalizedCorrect.addAll(
-            (json['correctOrder'] as List<dynamic>).map((dynamic e) => e.toString()),
+            (json['correctOrder'] as List<dynamic>).map(
+              (dynamic e) => e.toString(),
+            ),
           );
         }
       } else if (type == QuestionType.matching) {
-        
         if (json['correctMatches'] != null && json['correctMatches'] is List) {
           normalizedCorrect.addAll(
-            (json['correctMatches'] as List<dynamic>)
-                .map((dynamic e) => Map<String, String>.from(e)),
+            (json['correctMatches'] as List<dynamic>).map(
+              (dynamic e) => Map<String, String>.from(e),
+            ),
           );
         }
       } else {
@@ -93,18 +92,15 @@ class QuestionModel extends QuestionEntity {
       }
     }
 
-    
     final List<String>? acceptable =
         (json['acceptableAnswers'] as List<dynamic>?)
             ?.map((dynamic e) => e.toString())
             .toList();
 
-    
     final int points = json['points'] is num
         ? (json['points'] as num).toInt()
         : int.tryParse(json['points']?.toString() ?? '') ?? 1;
 
-   
     final double? tolerance = json['tolerance'] != null
         ? (json['tolerance'] is num
               ? (json['tolerance'] as num).toDouble()

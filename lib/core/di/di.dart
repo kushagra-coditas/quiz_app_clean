@@ -8,17 +8,17 @@ import 'package:quiz_app_clean/presentation/bloc/quiz_bloc.dart';
 final GetIt dependencyInjection = GetIt.instance;
 
 Future<void> init() async {
-  
-  dependencyInjection.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
+  dependencyInjection.registerLazySingleton<RemoteDataSource>(
+    () => RemoteDataSourceImpl(),
+  );
 
-  
   dependencyInjection.registerLazySingleton<QuestionRepository>(
     () => QuestionRepositoryImpl(remoteDataSource: dependencyInjection()),
   );
 
-  
-  dependencyInjection.registerLazySingleton(() => FetchQuestionsUsecase(dependencyInjection()));
+  dependencyInjection.registerLazySingleton(
+    () => FetchQuestionsUsecase(dependencyInjection()),
+  );
 
-  
   dependencyInjection.registerFactory(() => QuizBloc(dependencyInjection()));
 }

@@ -9,7 +9,9 @@ abstract class RemoteDataSource {
 class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<QuestionModel>> fetchQuestions() async {
-    final String jsonString = await rootBundle.loadString('lib/assets/quiz_questions.json');
+    final String jsonString = await rootBundle.loadString(
+      'lib/assets/quiz_questions.json',
+    );
     final Map<String, dynamic> data = jsonDecode(jsonString);
 
     final List<dynamic> questionsJson = (data['questions'] as List<dynamic>);

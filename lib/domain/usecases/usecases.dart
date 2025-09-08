@@ -7,6 +7,6 @@ class FetchQuestionsUsecase {
   FetchQuestionsUsecase(this.repository);
 
   Future<List<QuestionEntity>> call() async {
-    return await repository.questionrepository();
+    return await repository.questionRepository();
   }
 }
