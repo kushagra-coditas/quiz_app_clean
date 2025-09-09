@@ -79,10 +79,10 @@ class MatchingWidget extends StatelessWidget {
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isDisabled
-              ? Colors.grey.shade300
+              ? Color.fromARGB(174, 89, 221, 65)
               : (isSelected
                     ? Color.fromARGB(174, 89, 221, 65)
-                    : const Color.fromARGB(255, 218, 233, 246)),
+                    : Colors.grey.shade200),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(text),

@@ -22,7 +22,7 @@ class OptionTile extends StatelessWidget {
     if (answered && isSelected) {
       tileColor = isCorrect ? Color.fromARGB(174, 89, 221, 65) : Colors.red;
     } else if (isSelected) {
-      tileColor = Colors.blue.shade200;
+      tileColor = Color.fromARGB(174, 89, 221, 65);
     } else {
       tileColor = Colors.grey.shade200;
     }
