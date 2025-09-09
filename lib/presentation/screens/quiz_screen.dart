@@ -44,10 +44,21 @@ class QuizScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      questionEntity.question,
-                      style: TextStyle(fontSize: 18),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          questionEntity.question,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Difficulty Level: ${questionEntity.difficulty}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
                     ),
+
                     SizedBox(height: 16),
                     Expanded(
                       child: buildQuestionWidget(

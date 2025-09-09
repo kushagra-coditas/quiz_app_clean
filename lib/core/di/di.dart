@@ -13,11 +13,11 @@ Future<void> init() async {
   );
 
   dependencyInjection.registerLazySingleton<QuestionRepository>(
-    () => QuestionRepositoryImpl(remoteDataSource: dependencyInjection()),
+    () => QuestionRepositoryImpl(remoteDataSource: dependencyInjection<RemoteDataSource>()),
   );
 
   dependencyInjection.registerLazySingleton(
-    () => FetchQuestionsUsecase(dependencyInjection()),
+    () => FetchQuestionsUsecase(dependencyInjection<QuestionRepository>()),
   );
 
   dependencyInjection.registerFactory(() => QuizBloc(dependencyInjection()));

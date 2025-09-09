@@ -2,6 +2,7 @@ import 'package:quiz_app_clean/domain/entities/questions_entity.dart';
 
 class QuestionModel extends QuestionEntity {
   const QuestionModel({
+    required super.difficulty,
     super.id,
     super.type,
     required super.question,
@@ -12,6 +13,7 @@ class QuestionModel extends QuestionEntity {
     super.acceptableAnswers,
     required super.points,
     super.tolerance,
+    super.correctOrder,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -92,6 +94,11 @@ class QuestionModel extends QuestionEntity {
       }
     }
 
+    final List<dynamic>? correctOrder =
+        (json['correctOrder'] as List<dynamic>?)
+            ?.map((dynamic e) => e.toString())
+            .toList();
+
     final List<String>? acceptable =
         (json['acceptableAnswers'] as List<dynamic>?)
             ?.map((dynamic e) => e.toString())
@@ -112,6 +119,7 @@ class QuestionModel extends QuestionEntity {
       type: type,
       question: json['question']?.toString() ?? '',
       options: options,
+      correctOrder: correctOrder,
       leftColumn: (json['leftColumn'] as List<dynamic>?)
           ?.map((dynamic e) => e.toString())
           .toList(),
@@ -122,6 +130,7 @@ class QuestionModel extends QuestionEntity {
       acceptableAnswers: acceptable,
       points: points,
       tolerance: tolerance,
+      difficulty: json['difficulty']?.toString() ?? '',
     );
   }
 

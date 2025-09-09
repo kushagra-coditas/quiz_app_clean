@@ -16,11 +16,21 @@ class MultipleChoiceWidget extends StatelessWidget {
       children: q.options!.map((String option) {
         final bool isSelected = state.selectedOption != null &&
             state.selectedOption.toString() == option;
+
+         final bool isCorrect =
+            q.correctAnswers != null && q.correctAnswers!.contains(option);
+
         return OptionTile(
+          answered: state.answered,
+          isCorrect: isCorrect,
           text: option,
           isSelected: isSelected,
+          
           onTap: () {
-            if (!state.answered) {
+           if (isSelected) {
+              context.read<QuizBloc>().add(SelectAnswer(null));
+            }
+          else {
               context.read<QuizBloc>().add(SelectAnswer(option));
             }
           },

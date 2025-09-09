@@ -75,14 +75,14 @@ class MatchingWidget extends StatelessWidget {
     return GestureDetector(
       onTap: isDisabled ? null : onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 6),
-        padding: const EdgeInsets.all(12),
+        margin: EdgeInsets.symmetric(vertical: 6),
+        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isDisabled
               ? Colors.grey.shade300
               : (isSelected
                     ? Color.fromARGB(174, 89, 221, 65)
-                    : Colors.blue.shade100),
+                    : const Color.fromARGB(255, 218, 233, 246)),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(text),

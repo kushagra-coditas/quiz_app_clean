@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart' show Equatable;
 
 enum QuestionType {
   multipleChoice,
@@ -14,6 +14,7 @@ enum QuestionType {
 class QuestionEntity extends Equatable {
   final String? id;
   final QuestionType? type;
+  final String difficulty;
   final String question;
   final List<String>? options;
   final List<dynamic>? correctAnswers;
@@ -22,18 +23,21 @@ class QuestionEntity extends Equatable {
   final List<String>? rightColumn;
   final int points;
   final double? tolerance;
+  final List<dynamic>? correctOrder;
 
   const QuestionEntity({
     this.id,
     this.type,
+    required this.difficulty,
     required this.question,
     this.options,
-    this.leftColumn,
-    this.rightColumn,
     this.correctAnswers,
     this.acceptableAnswers,
+    this.leftColumn,
+    this.rightColumn,
     required this.points,
     this.tolerance,
+    this.correctOrder,
   });
 
   @override
@@ -46,5 +50,7 @@ class QuestionEntity extends Equatable {
     acceptableAnswers,
     points,
     tolerance,
+    difficulty,
+    correctOrder,
   ];
 }
