@@ -46,7 +46,7 @@ class QuizScreen extends StatelessWidget {
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         Text(
                           questionEntity.question,
                           style: TextStyle(fontSize: 18),

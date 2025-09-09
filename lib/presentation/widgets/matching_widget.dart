@@ -18,49 +18,63 @@ class MatchingWidget extends StatelessWidget {
     String? pendingLeft;
     String? pendingRight;
 
-    return Row(
+    return Column(
       children: <Widget>[
-        Expanded(
-          child: Column(
-            children: q.leftColumn!.map((String option) {
-              final bool isUsed = selected.any(
-                (Map<String, String> pair) => pair['left'] == option,
-              );
-              return tile(
-                text: option,
-                isSelected: pendingLeft == option,
-                isDisabled: isUsed,
-                onTap: () {
-                  if (!state.answered && !isUsed) {
-                    pendingLeft = option;
-                    tryPair(context, pendingLeft, pendingRight, selected);
-                  }
-                },
-              );
-            }).toList(),
-          ),
-        ),
-        SizedBox(width: 16),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: q.leftColumn!.map((String option) {
+                  final bool isUsed = selected.any(
+                    (Map<String, String> pair) => pair['left'] == option,
+                  );
+                  return tile(
+                    text: option,
+                    isSelected: pendingLeft == option,
+                    isDisabled: isUsed,
+                    onTap: () {
+                      if (!state.answered && !isUsed) {
+                        pendingLeft = option;
+                        tryPair(context, pendingLeft, pendingRight, selected);
+                      }
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+            
+            SizedBox(width: 16),
 
-        Expanded(
-          child: Column(
-            children: q.rightColumn!.map((String option) {
-              final bool isUsed = selected.any(
-                (Map<String, String> pair) => pair['right'] == option,
-              );
-              return tile(
-                text: option,
-                isSelected: pendingRight == option,
-                isDisabled: isUsed,
-                onTap: () {
-                  if (!state.answered && !isUsed) {
-                    pendingRight = option;
-                    tryPair(context, pendingLeft, pendingRight, selected);
-                  }
+            Expanded(
+              child: Column(
+                children: q.rightColumn!.map((String option) {
+                  final bool isUsed = selected.any(
+                    (Map<String, String> pair) => pair['right'] == option,
+                  );
+                  return tile(
+                    text: option,
+                    isSelected: pendingRight == option,
+                    isDisabled: isUsed,
+                    onTap: () {
+                      if (!state.answered && !isUsed) {
+                        pendingRight = option;
+                        tryPair(context, pendingLeft, pendingRight, selected);
+                      }
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: state.answered
+              ? null
+              : () {
+                  context.read<QuizBloc>().add(SubmitAnswer());
                 },
-              );
-            }).toList(),
-          ),
+          child: const Text('Submit'),
         ),
       ],
     );
